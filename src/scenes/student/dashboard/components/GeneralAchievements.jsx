@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import type { AppState } from '../../../../types'
 import { withStyles } from 'material-ui/styles'
@@ -8,6 +8,8 @@ import Grid from 'material-ui/Grid'
 import { Text } from 'common-components'
 import { Paper } from 'material-ui'
 import { Carousel } from './'
+import { Avatar } from 'common-components'
+import trophy from 'assets/trophy.svg'
 
 const styles = theme => ({
   achievementPanel: theme.mixins.gutters({
@@ -60,10 +62,17 @@ class GeneralAchievements extends React.Component {
       coursePanels.push(
         <Grid item sm={4}>
           <Paper className={classes.achievementPanel} key={i}>
-            <Text fontSize={'1.3em'}>{achievements[i].name}</Text>
-            <br />
-            <br />
-            <Text>{achievements[i].description}</Text>
+            <Grid container>
+              <Grid item sm={3}>
+                <Avatar src={trophy} size={'3.7em'} />
+              </Grid>
+              <Grid item sm={9}>
+                <Text fontSize={'1.3em'}>{achievements[i].name}</Text>
+                <br />
+                <br />
+                <Text>{achievements[i].description}</Text>
+              </Grid>
+            </Grid>
           </Paper>
         </Grid>
       )

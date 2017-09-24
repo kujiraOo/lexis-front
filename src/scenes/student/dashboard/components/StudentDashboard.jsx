@@ -8,7 +8,7 @@ import { Paper } from 'material-ui'
 import { withStyles } from 'material-ui/styles'
 import type { AppState } from '../../../../types'
 import { connect } from 'react-redux'
-import { CoursePanels, GeneralAchievements } from './'
+import { CoursePanels, GeneralAchievements, CourseAchievements } from './'
 
 const commonStyles = {
   paddingTop: 16,
@@ -16,12 +16,9 @@ const commonStyles = {
   width: '100%'
 }
 const styles = theme => ({
-  overview: theme.mixins.gutters({
-    ...commonStyles
-  }),
-  coursePanel: theme.mixins.gutters({
-    padding: theme.spacing.unit,
-    margin: '10px'
+  panel: theme.mixins.gutters({
+    ...commonStyles,
+    marginBottom: '30px'
   })
 })
 
@@ -40,7 +37,7 @@ const StudentDashboard = (props: Props) => {
 
   return (
     <Wrapper container spacing={24}>
-      <Paper className={classes.overview}>
+      <Paper className={classes.panel}>
         <Grid container spacing={24}>
           <Grid item sm={1}>
             <Avatar size='100%' />
@@ -64,12 +61,15 @@ const StudentDashboard = (props: Props) => {
           <br />
         </Grid>
       </Paper>
-      <Paper className={classes.overview}>
+      <Paper className={classes.panel}>
         <CoursePanels />
       </Paper>
-      <Paper className={classes.overview}>
+      <Paper className={classes.panel}>
         <GeneralAchievements />
       </Paper>
+      {/*<Paper className={classes.panel}>*/}
+      <CourseAchievements className={classes.panel} />
+      {/*</Paper>*/}
     </Wrapper>
   )
 }
