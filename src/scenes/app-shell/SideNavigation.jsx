@@ -20,7 +20,7 @@ const navigationItems = {
     {
       title: 'Dashboard',
       imgSrc: dashboardIcon,
-      link: '/dashboard'
+      link: '/teacher/dashboard'
     },
     {
       title: 'My Courses',
@@ -42,7 +42,7 @@ const navigationItems = {
     {
       title: 'Dashboard',
       imgSrc: dashboardIcon,
-      link: '/dashboard'
+      link: '/student/dashboard'
     },
     {
       title: 'My Courses',
