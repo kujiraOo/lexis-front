@@ -10,20 +10,21 @@ import { Paper } from 'material-ui'
 import { Carousel } from './'
 
 const styles = theme => ({
-  coursePanel: theme.mixins.gutters({
+  achievementPanel: theme.mixins.gutters({
     padding: theme.spacing.unit,
-    margin: '10px'
+    margin: '10px',
+    minHeight: '100px'
   })
 })
 
 type Props = {
-  courses: Array<any>,
+  achievements: Array<any>,
   classes: any
 }
 
-const nCoursesPerView = 3
+const nAchievementsPerView = 3
 
-class CoursePanels extends Component {
+class GeneralAchievements extends React.Component {
   props: Props
   state: {
     selectedViewIdx: number
@@ -47,20 +48,22 @@ class CoursePanels extends Component {
   }
 
   renderCoursePanels (offset, nCourses) {
-    const { classes, courses } = this.props
+    const { classes, achievements } = this.props
     let coursePanels = []
 
     const coursesEndIndex =
-      offset + nCourses > courses.length ? courses.length : offset + nCourses
+      offset + nCourses > achievements.length
+        ? achievements.length
+        : offset + nCourses
 
     for (let i = offset; i < coursesEndIndex; i++) {
       coursePanels.push(
         <Grid item sm={4}>
-          <Paper className={classes.coursePanel} key={i}>
-            <Text fontSize={'1.3em'}>{courses[i].name}</Text>
+          <Paper className={classes.achievementPanel} key={i}>
+            <Text fontSize={'1.3em'}>{achievements[i].name}</Text>
             <br />
             <br />
-            <Text>Complete 1/12</Text>
+            <Text>{achievements[i].description}</Text>
           </Paper>
         </Grid>
       )
@@ -69,17 +72,20 @@ class CoursePanels extends Component {
     return coursePanels
   }
 
-  renderCoursePanelViews () {
-    const { courses } = this.props
+  renderAchievementPanelViews () {
+    const { achievements } = this.props
 
-    const nViews = Math.floor(courses.length / nCoursesPerView) + 1
+    const nViews = Math.floor(achievements.length / nAchievementsPerView) + 1
 
     let views = []
 
     for (let i = 0; i < nViews; i++) {
       views.push(
         <Grid container spacing={12} key={i} style={{ padding: '10px' }}>
-          {this.renderCoursePanels(i * nCoursesPerView, nCoursesPerView)}
+          {this.renderCoursePanels(
+            i * nAchievementsPerView,
+            nAchievementsPerView
+          )}
         </Grid>
       )
     }
@@ -88,16 +94,16 @@ class CoursePanels extends Component {
   }
 
   render () {
-    const { courses } = this.props
+    const { achievements } = this.props
     const { selectedViewIdx } = this.state
-    const nViews = Math.floor(courses.length / nCoursesPerView)
+    const nViews = Math.floor(achievements.length / nAchievementsPerView)
 
     return (
       <div>
-        <Text fontSize='1.5em'>Courses</Text>
+        <Text fontSize='1.5em'>General Achievements</Text>
         <Carousel
           nViews={nViews}
-          children={this.renderCoursePanelViews()}
+          children={this.renderAchievementPanelViews()}
           onChangeIndex={this.handleChangeIndex}
           viewIdx={selectedViewIdx}
         />
@@ -106,41 +112,33 @@ class CoursePanels extends Component {
   }
 }
 
-const StyledCoursePanels = withStyles(styles)(CoursePanels)
+const StyledGeneralAchievements = withStyles(styles)(GeneralAchievements)
 
 function mapStateToProps (state: AppState) {
   return {
-    courses: [
+    achievements: [
       {
-        name: 'Amazing English',
-        completion: '1/12'
+        name: 'Humanity Destroyer',
+        description: 'Kill more than 7 000 000 000 people'
       },
       {
-        name: 'Cooking English',
-        completion: '1/12'
+        name: "Satan's Mom",
+        description: 'Give birth to satan'
       },
       {
-        name: 'Helping The Poor English',
-        completion: '1/12'
+        name: 'The Pain Itself',
+        description: 'Hurt feelings of at least 1000 people around you'
       },
       {
-        name: 'Saving Humanity English',
-        completion: '1/12'
+        name: 'Stunt Master',
+        description: 'Drive you car into the ocean and surf a shark'
       },
       {
-        name: 'Basics of Alien',
-        completion: '1/12'
-      },
-      {
-        name: 'Menani French',
-        completion: '1/12'
-      },
-      {
-        name: 'Advanced Seppo',
-        completion: '1/12'
+        name: 'The Doom Bringer',
+        description: 'Cause a malfunction at a nuclear power plant'
       }
     ]
   }
 }
 
-export default connect(mapStateToProps)(StyledCoursePanels)
+export default connect(mapStateToProps)(StyledGeneralAchievements)

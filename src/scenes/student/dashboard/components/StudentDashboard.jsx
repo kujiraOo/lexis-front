@@ -8,7 +8,7 @@ import { Paper } from 'material-ui'
 import { withStyles } from 'material-ui/styles'
 import type { AppState } from '../../../../types'
 import { connect } from 'react-redux'
-import CoursePanels from './CoursePanels'
+import { CoursePanels, GeneralAchievements } from './'
 
 const commonStyles = {
   paddingTop: 16,
@@ -66,6 +66,9 @@ const StudentDashboard = (props: Props) => {
       </Paper>
       <Paper className={classes.overview}>
         <CoursePanels />
+      </Paper>
+      <Paper className={classes.overview}>
+        <GeneralAchievements />
       </Paper>
     </Wrapper>
   )
