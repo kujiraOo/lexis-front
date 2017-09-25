@@ -8,7 +8,12 @@ import { Paper } from 'material-ui'
 import { withStyles } from 'material-ui/styles'
 import type { AppState } from '../../../../types'
 import { connect } from 'react-redux'
-import { CoursePanels, GeneralAchievements, CourseAchievements } from './'
+import {
+  CoursePanels,
+  GeneralAchievements,
+  CourseAchievements,
+  ProgressCharts
+} from './'
 
 const commonStyles = {
   paddingTop: 16,
@@ -32,6 +37,11 @@ const Wrapper = styled(Grid)`
   width: 100%;
 `
 
+const DashboardAvatar = styled(Avatar)`
+  width: 5em !important;
+  height: 5em !important;
+`
+
 const StudentDashboard = (props: Props) => {
   const { classes, user } = props
 
@@ -40,14 +50,14 @@ const StudentDashboard = (props: Props) => {
       <Paper className={classes.panel}>
         <Grid container spacing={24}>
           <Grid item sm={1}>
-            <Avatar size='100%' />
+            <DashboardAvatar />
           </Grid>
-          <Grid item sm={6}>
+          <Grid item sm={1}>
             <Text primary medium fontSize={'1.3em'}>
               {user.firstName + ' ' + user.lastName}
             </Text>
             <br />
-            <Text primary medium fontSize={'1.0em'}>
+            <Text primary medium fontSize={'1em'}>
               Level 1
             </Text>
             <br />
@@ -55,10 +65,9 @@ const StudentDashboard = (props: Props) => {
               Active subscription
             </Text>
           </Grid>
-
-          <br />
-          <br />
-          <br />
+          <Grid item sm={10}>
+            <ProgressCharts />
+          </Grid>
         </Grid>
       </Paper>
       <Paper className={classes.panel}>
@@ -67,9 +76,7 @@ const StudentDashboard = (props: Props) => {
       <Paper className={classes.panel}>
         <GeneralAchievements />
       </Paper>
-      {/*<Paper className={classes.panel}>*/}
       <CourseAchievements className={classes.panel} />
-      {/*</Paper>*/}
     </Wrapper>
   )
 }

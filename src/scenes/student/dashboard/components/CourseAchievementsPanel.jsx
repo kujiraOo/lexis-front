@@ -3,7 +3,6 @@
 import React from 'react'
 import { Button, Paper, TableBody, TableRow, TableCell } from 'material-ui'
 import { Text } from 'common-components'
-import { withStyles } from 'material-ui/styles'
 import { Avatar } from 'common-components'
 import trophy from 'assets/trophy.svg'
 
