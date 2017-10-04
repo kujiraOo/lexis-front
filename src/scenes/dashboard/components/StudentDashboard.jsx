@@ -125,11 +125,23 @@ function mapStateToProps (state: AppState) {
         achievements: [
           {
             name: 'Intoxicated',
-            description: 'Drink 3 bottles of coke'
+            description: 'Drink 3 bottles of coke',
+            unlocked: true
           },
           {
             name: 'The Great Escape',
-            description: 'Happens after drinking 3 bottles of coke'
+            description: 'Happens after drinking 3 bottles of coke',
+            unlocked: true
+          },
+          {
+            name: 'Intoxicated',
+            description: 'Drink 3 bottles of coke',
+            unlocked: false
+          },
+          {
+            name: 'The Great Escape',
+            description: 'Happens after drinking 3 bottles of coke',
+            unlocked: false
           }
         ]
       },
@@ -138,11 +150,23 @@ function mapStateToProps (state: AppState) {
         achievements: [
           {
             name: 'The King',
-            description: 'Get married to a queen'
+            description: 'Get married to a queen',
+            unlocked: true
           },
           {
             name: 'Rumble in The Sky',
-            description: 'Use Stinger missile launcher at least ones'
+            description: 'Use Stinger missile launcher at least ones',
+            unlocked: true
+          },
+          {
+            name: 'The King',
+            description: 'Get married to a queen',
+            unlocked: false
+          },
+          {
+            name: 'Rumble in The Sky',
+            description: 'Use Stinger missile launcher at least ones',
+            unlocked: false
           }
         ]
       }

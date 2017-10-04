@@ -10,11 +10,12 @@ import styled from 'styled-components'
 import { ArrowDropDown, ArrowDropUp } from 'material-ui-icons'
 import type { AchievementCategory, Achievement } from 'core/types'
 
-const AchievementIcon = styled(Avatar)`
+const AchievementIcon = styled.img`
   width: 3em !important;
   height: 3em !important;
   display: inline-block !important;
   margin: 1em 1em 1em 0;
+  filter: ${props => (props.unlocked ? 'none' : 'grayscale(100%)')};
 `
 
 const Container = styled(Paper)`
@@ -58,7 +59,7 @@ class CategoryAchievementsPanel extends React.Component {
     const { achievements } = this.props.achievementCategory
 
     return achievements.map((achievement, key) => (
-      <AchievementIcon key={key} src={trophy} />
+      <AchievementIcon key={key} src={trophy} unlocked={achievement.unlocked} />
     ))
   }
 
@@ -98,11 +99,11 @@ class CategoryAchievementsPanel extends React.Component {
   renderAchivementItems () {
     const { achievements } = this.props.achievementCategory
 
-    return achievements.map(achievement => {
+    return achievements.map((achievement, i) => {
       return (
-        <TableRow key={achievement.name}>
+        <TableRow key={i}>
           <TableCell>
-            <AchievementIcon src={trophy} />
+            <AchievementIcon src={trophy} unlocked={achievement.unlocked} />
           </TableCell>
           <TableCell>
             <Text fontSize={'1.2rem'}>{achievement.name}</Text>

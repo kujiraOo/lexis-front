@@ -114,12 +114,26 @@ function mapStateToProps (state: AppState) {
           {
             name: 'Man Who Sold The World',
             description:
-              'Learn to play Man Who Sold The World and make a cover like Nirvana did'
+              'Learn to play Man Who Sold The World and make a cover like Nirvana did',
+            unlocked: true
           },
           {
             name: 'Squeeze Them All',
             description:
-              'Trick at least 100 students to subscribe to one of your courses with ridiculously high subscription cost'
+              'Trick at least 100 students to subscribe to one of your courses with ridiculously high subscription cost',
+            unlocked: true
+          },
+          {
+            name: 'Man Who Sold The World',
+            description:
+              'Learn to play Man Who Sold The World and make a cover like Nirvana did',
+            unlocked: false
+          },
+          {
+            name: 'Squeeze Them All',
+            description:
+              'Trick at least 100 students to subscribe to one of your courses with ridiculously high subscription cost',
+            unlocked: false
           }
         ]
       },
@@ -129,11 +143,25 @@ function mapStateToProps (state: AppState) {
           {
             name: 'Kind Guy',
             description:
-              'Grant course completion certificates with 100% rate to 1 000 students'
+              'Grant course completion certificates with 100% rate to 1 000 students',
+            unlocked: true
           },
           {
             name: 'Rumble in The Sky',
-            description: 'Use Stinger missile launcher at least ones'
+            description: 'Use Stinger missile launcher at least ones',
+            unlocked: true
+          },
+          {
+            name: 'Man Who Sold The World',
+            description:
+              'Learn to play Man Who Sold The World and make a cover like Nirvana did',
+            unlocked: false
+          },
+          {
+            name: 'Squeeze Them All',
+            description:
+              'Trick at least 100 students to subscribe to one of your courses with ridiculously high subscription cost',
+            unlocked: false
           }
         ]
       }

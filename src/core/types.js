@@ -169,7 +169,8 @@ export type PromoEvent = { name: string, description: string }
 export type Achievement = {
   name: string,
   description: string,
-  imgUrl: string
+  imgUrl: string,
+  unlocked: boolean
 }
 
 export type AchievementCategory = {
