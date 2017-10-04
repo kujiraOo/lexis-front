@@ -11,23 +11,44 @@ import * as courseListActions from '../actions-creators/courseListActions'
 import { connect } from 'react-redux'
 import { gql, graphql } from 'react-apollo'
 import { withRouter } from 'react-router'
-import { courseListQuery } from '../queries/index'
+import { courseListQuery } from '../queries'
+import defaultImage from '../../../assets/course-space.svg'
 
 const ClickableContainer = styled(ListItem)`
   margin-bottom: 1rem;
   width: 100% !important;
   display: block !important;
+  padding: 0;
+`
+
+const Container = styled(Paper)`
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  position: relative;
+  max-height: 200px;
 `
 
 const HeaderContainer = styled.div`
-  margin-bottom: 1rem;
+  margin: 1rem;
   width: 100%;
 `
 
 const DescriptionContainer = styled.div`
-  margin-bottom: 1rem;
+  margin: 1rem;
   width: 100%;
 `
+
+const CourseImg = styled.img`
+  height: 150px;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  display: block;
+  transform: translate(-50%, -50%);
+`
+
+const ImgContainer = styled(Grid)`overflow: hidden;`
 
 type Props = {
   actions: {
@@ -45,7 +66,7 @@ const CourseList = ({ data, actions, history }: Props) => {
   if (!courses) return null
 
   const renderCourseItems = () => {
-    return courses.map(({ id, name, description }) => (
+    return courses.map(({ id, imageUrl, name, description }) => (
       <ListPanel key={id}>
         <ClickableContainer
           key={id}
@@ -55,18 +76,31 @@ const CourseList = ({ data, actions, history }: Props) => {
           }}
           button
         >
-          <HeaderContainer>
-            <Text fontSize={'1.3rem'}>{name}</Text>
-          </HeaderContainer>
-          <DescriptionContainer>
-            <Text>{description}</Text>
-          </DescriptionContainer>
+          <Container>
+            <Grid container spacing={24}>
+              <ImgContainer item xs={5}>
+                <CourseImg src={imageUrl || defaultImage} />
+              </ImgContainer>
+              <Grid item xs={7}>
+                <HeaderContainer>
+                  <Text fontSize={'2rem'}>{name}</Text>
+                </HeaderContainer>
+                <DescriptionContainer>
+                  <Text>{description}</Text>
+                </DescriptionContainer>
+              </Grid>
+            </Grid>
+          </Container>
         </ClickableContainer>
       </ListPanel>
     ))
   }
 
-  return <Grid container>{renderCourseItems()}</Grid>
+  return (
+    <Grid container spacing={0}>
+      {renderCourseItems()}
+    </Grid>
+  )
 }
 
 const CourseListWithData = graphql(courseListQuery)(CourseList)

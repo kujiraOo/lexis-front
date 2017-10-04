@@ -5,7 +5,8 @@ import type { Course } from 'core/types'
 export type CourseListItem = {
   name: string,
   description: string,
-  id: string
+  id: string,
+  imageUrl: ?string
 }
 
 export type CourseListState = {

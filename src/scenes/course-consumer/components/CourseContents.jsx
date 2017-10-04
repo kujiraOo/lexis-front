@@ -4,15 +4,25 @@ import * as React from 'react'
 import type { AppState, Course } from 'core/types'
 import { connect } from 'react-redux'
 import { graphql } from 'react-apollo'
-import { courseContentsQuery } from '../queries/index'
+import { courseContentsQuery } from '../queries'
 import { Wrapper, Text } from 'common-components'
 import { Grid, List, ListItem } from 'material-ui'
 import { courseContentsActions } from '../actions-creators'
 import { bindActionCreators } from 'redux'
 import { withRouter } from 'react-router'
 import styled from 'styled-components'
+import defaultImage from '../../../assets/course-space.svg'
 
 const Container = styled(Grid)`padding: 3rem;`
+const CourseImage = styled.img`
+  height: 300px;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  display: block;
+  transform: translate(-50%, -50%);
+`
+const ImageContainer = styled(Grid)`overflow: hidden;`
 
 type Props = {
   course: Course,
@@ -65,19 +75,25 @@ class CourseContents extends React.Component {
     return (
       <Container container>
         {course ? (
-          <div>
-            <p>
-              <Text fontSize={'3rem'}>{course.name}</Text>
-            </p>
-            <p>
-              <Text fontSize={'1.5rem'}>{course.description}</Text>
-            </p>
-            <p>
-              <Text fontSize={'2rem'}>Contents</Text>
-            </p>
-
-            {this.renderTableOfContents()}
-          </div>
+          <Grid container>
+            <ImageContainer item xs={4}>
+              <CourseImage src={course.imageUrl || defaultImage} />
+            </ImageContainer>
+            <Grid item xs={8}>
+              <p>
+                <Text fontSize={'3rem'}>{course.name}</Text>
+              </p>
+              <p>
+                <Text fontSize={'1.5rem'}>{course.description}</Text>
+              </p>
+            </Grid>
+            <Grid item xs={12}>
+              <p>
+                <Text fontSize={'2rem'}>Contents</Text>
+              </p>
+              {this.renderTableOfContents()}
+            </Grid>
+          </Grid>
         ) : (
           <div>No course data available</div>
         )}

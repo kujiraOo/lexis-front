@@ -8,6 +8,7 @@ const courseListQuery = gql`
       name
       description
       id
+      imageUrl
     }
   }
 `

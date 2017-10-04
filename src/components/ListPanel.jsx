@@ -5,11 +5,7 @@ import Text from './Text'
 import styled from 'styled-components'
 import * as React from 'react'
 
-const ContentContainer = styled(ListItem)`
-  padding: 1rem;
-  margin: 1rem;
-  minheight: 8rem;
-`
+const ContentContainer = styled(ListItem)`minheight: 8rem;`
 
 type Props = {
   children?: Node
@@ -17,7 +13,7 @@ type Props = {
 
 const ListPanel = ({ children }: Props) => {
   return (
-    <Grid item xs={12} lg={4}>
+    <Grid item xs={12} md={6} xl={4}>
       <ContentContainer>{children}</ContentContainer>
     </Grid>
   )
