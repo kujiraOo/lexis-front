@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 import { connect } from 'react-redux'
-import { Wrapper } from 'common-components'
+import { Wrapper, Text } from 'common-components'
 import { Paper } from 'material-ui'
 import { withStyles } from 'material-ui/styles'
 import EventPanel from './EventPanel'
@@ -55,6 +55,9 @@ class TeacherDashboard extends React.Component {
         </Paper>
         <Paper className={classes.panel}>
           <GeneralAchievements achievements={generalAchievements} />
+        </Paper>
+        <Paper className={classes.panel}>
+          <Text fontSize='1.5em'>Category Achievements</Text>
         </Paper>
         <CategoryAchievements achievementCategories={categoryAchievements} />
       </Wrapper>

@@ -78,6 +78,9 @@ const StudentDashboard = (props: Props) => {
       <Paper className={classes.panel}>
         <GeneralAchievements achievements={generalAchievements} />
       </Paper>
+      <Paper className={classes.panel}>
+        <Text fontSize='1.5em'>Course Achievements</Text>
+      </Paper>
       <CourseAchievements
         className={classes.panel}
         achievementCategories={courseAchievements}
